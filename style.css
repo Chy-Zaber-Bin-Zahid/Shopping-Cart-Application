@@ -117,3 +117,96 @@ body{
   cursor: pointer;
   background-color: rgb(218, 0, 0);
 }
+
+.remove{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.increase{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.increase-button{
+  border-radius: 5px;
+  padding: .5rem;
+  display: block;
+  width: 5rem;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 1.8rem;
+  transition: all .5s;
+}
+
+.increase-button:hover{
+  cursor: pointer;
+  background-color: rgb(59, 59, 59);
+}
+
+.increase-title{
+  font-size: 1.8rem;
+}
+
+.calculaton{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.cal-div{
+  display: flex;
+  gap: 1rem;
+  justify-content: left;
+  align-items: center;
+}
+
+.cal-label{
+  font-size: 2rem;
+}
+
+.clac-input{
+  padding: .5rem;
+  font-size: 1.6rem;
+  border: 2px solid solver;
+}
+
+.clac-btn-dis{
+  width: 6rem;
+  padding: .7rem;
+  border: none;
+  background-color: rgb(187, 187, 187);
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all .5s;
+}
+
+.clac-btn-dis:hover{
+  cursor: pointer;
+  background-color: rgb(146, 146, 146);
+}
+
+.calc-btn{
+  background-color: red;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: all .5s;
+}
+
+.calc-btn:hover{
+  cursor: pointer;
+  background-color: rgb(218, 0, 0);
+}

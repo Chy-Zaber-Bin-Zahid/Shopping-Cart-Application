@@ -52,7 +52,10 @@ let addToCart = (id) => {
     let total = child.querySelector(".total").textContent;
     let newTotal = String(Number(total) + Number(option));
     child.querySelector(".total").textContent = newTotal;
-    child.querySelector(".price").textContent = Number(price)*Number(newTotal)
+    child.querySelector(".price").textContent =
+      Number(price) * Number(newTotal);
+    document.querySelector(`#product-${id} .increase-title`).textContent =
+      newTotal;
   } else {
     const productDetails = document.getElementById(`product-${id}`);
     const image = productDetails.querySelector(".product-image").src;
@@ -74,15 +77,106 @@ let addToCart = (id) => {
         <h1 >Price: <span class="price">${price * option}</span>tk</h1>
         <h1 >Total Product: <span class="total">${option}</span></h1>
       </div>
+      <div class="remove">
       <button onClick="remove(${id})" class="selected-button">Remove</button>
+      <div class="increase">
+        <button class="increase-button" onClick="minus(${id})" >-</button>
+        <h1 class="increase-title">${option}</h1>
+        <button class="increase-button" onClick="plus(${id})" >+</button>
+      </div>
+      </div>
   `;
     productContainer.appendChild(productElement);
   }
 };
 
-
 let remove = (id) => {
   const parentDiv = document.querySelector(".inside");
   const childElement = parentDiv.querySelector(`#product-${id}`);
   childElement.remove();
-}
+};
+
+let minus = (id) => {
+  const increaseTitle = document.querySelector(
+    `#product-${id} .increase-title`
+  ).textContent;
+  if (increaseTitle !== "1") {
+    document.querySelector(`#product-${id} .increase-title`).textContent =
+      Number(increaseTitle) - 1;
+    let option = document.querySelector(
+      `#product-${id} .increase-title`
+    ).textContent;
+    const parentDiv = document.querySelector(".inside");
+    const childElement = parentDiv.querySelector(`#product-${id}`);
+    const productDetails = document.getElementById(`product-${id}`);
+
+    const price = productDetails
+      .querySelector(".product-price")
+      .textContent.replace("tk", "");
+
+    let child = childElement.querySelector(".selected-div");
+    let newTotal = String(Number(option));
+    child.querySelector(".total").textContent = newTotal;
+    child.querySelector(".price").textContent =
+      Number(price) * Number(newTotal);
+  }
+};
+
+let plus = (id) => {
+  const increaseTitle = document.querySelector(
+    `#product-${id} .increase-title`
+  ).textContent;
+  document.querySelector(`#product-${id} .increase-title`).textContent =
+    Number(increaseTitle) + 1;
+  let option = document.querySelector(
+    `#product-${id} .increase-title`
+  ).textContent;
+  const parentDiv = document.querySelector(".inside");
+  const childElement = parentDiv.querySelector(`#product-${id}`);
+  const productDetails = document.getElementById(`product-${id}`);
+  const price = productDetails
+    .querySelector(".product-price")
+    .textContent.replace("tk", "");
+
+  let child = childElement.querySelector(".selected-div");
+  let newTotal = String(Number(option));
+  child.querySelector(".total").textContent = newTotal;
+  child.querySelector(".price").textContent = Number(price) * Number(newTotal);
+};
+
+let total = () => {
+  const parentDiv = document.querySelectorAll(".price");
+  let sum = 0;
+  parentDiv.forEach((item) => {
+    sum += Number(item.textContent);
+  });
+  document.querySelector(".calculation-total").textContent = `Total: ${sum}tk`;
+};
+setInterval(total, 100);
+
+let enter = () => {
+  if (
+    document.querySelector(".calculation-total").textContent !== "Total: 0tk" &&
+    document.querySelector(".clac-input").value >= 0 &&
+    document.querySelector(".clac-input").value <= 100
+  ) {
+    let store = document.querySelector(".calculation-total").textContent;
+    store = store.replace("Total: ", "").replace("tk", "");
+    const originalPrice = Number(store);
+    const discountPercentage = Number(
+      document.querySelector(".clac-input").value
+    );
+    const discountAmount = (originalPrice * discountPercentage) / 100;
+    const discountedPrice = originalPrice - discountAmount;
+    document.querySelector(".calc-dis").textContent = discountedPrice;
+  }
+};
+
+let empty = () => {
+  const parentDiv = document.querySelector(".inside");
+  while (parentDiv.firstChild) {
+    parentDiv.removeChild(parentDiv.firstChild);
+  }
+  document.querySelector(".clac-input").value = "";
+  document.querySelector(".calc-dis").textContent = "0";
+};

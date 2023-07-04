@@ -11,17 +11,22 @@
       <div class="shop-product"></div>
       <div class="shop-cart">
         <h1 class="cart-title">Cart</h1>
-        <div class="inside">
-
-        </div>
-        <div>
-          <h1>Total: 100tk</h1>
-          <label for="">Discount</label>
-          <input type="number" />
-          <button>Clear</button>
+        <div class="inside"></div>
+        <div class="calculaton">
+          <h1 class="calculation-total">Total: 0tk</h1>
+          <div class="cal-div">
+            <label class="cal-label" for="">Discount</label>
+            <input class="clac-input" type="number" />
+            <button class="clac-btn-dis" onclick="enter()">Enter</button>
+          </div>
+          <h1 >After Discount: <span class="calc-dis">0</span>tk</h1>
+          <button onclick="empty()" class="calc-btn">Clear</button>
         </div>
       </div>
     </div>
+
+
+
     <script src="script.js"></script>
   </body>
 </html>
